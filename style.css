@@ -1207,3 +1207,241 @@ textarea:focus {
 .hidden    { visibility: hidden; }
 .invisible { opacity: 0; }
 .overflow-hidden { overflow: hidden; }
+
+/* =================================================================
+   LAYOUT SPECIFIC CSS (01-08)
+   Hier finden sich die Layout-Strukturen für die 8 Templates.
+================================================================= */
+
+/* ---------------------------------------------------
+   01 - Landing Page Layout 
+--------------------------------------------------- */
+/* Zentrierter Container für Landing Pages */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 60vh;
+  background-color: #f8f9fa;
+  padding: 2rem;
+}
+
+/* Feature-Grid (z.B. 3 Spalten mit Auto-Fit) */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------
+   02 - Blog / Article Layout 
+--------------------------------------------------- */
+/* Sidebar Rechts Layout mit Grid */
+.layout-sidebar-right {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Hauptinhalt nimmt doppelt so viel Platz ein wie Sidebar */
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Responsive Anpassung auf kleinen Bildschirmen */
+@media (max-width: 768px) {
+  .layout-sidebar-right {
+    grid-template-columns: 1fr; /* Untereinander stapeln auf Mobile */
+  }
+}
+
+.hero-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: #ddd;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+/* ---------------------------------------------------
+   03 - Dashboard / App Layout 
+--------------------------------------------------- */
+/* Full-screen App Layout */
+.layout-app {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* 250px feste Sidebar, Rest für Hauptinhalt */
+  min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.layout-app .sidebar {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1.5rem;
+  border-right: 1px solid #1a252f;
+}
+
+/* Hauptbereich des Dashboards */
+.layout-app .dashboard-content {
+  background-color: #f4f6f9;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Statistik Karten Grid (z.B. für KPIs) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ---------------------------------------------------
+   04 - E-commerce / Shop Layout 
+--------------------------------------------------- */
+/* Layout mit Sidebar Links für Filter */
+.layout-sidebar-left {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .layout-sidebar-left {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsives Produkt-Grid */
+.product-grid .products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---------------------------------------------------
+   05 - Portfolio / Personal Layout 
+--------------------------------------------------- */
+/* Intro Sektion mit zentriertem Text */
+.intro {
+  text-align: center;
+  padding: 5rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Galerie/Portfolio Grid für Projekte */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem 2rem;
+}
+
+/* ---------------------------------------------------
+   06 - Docs / Knowledge Base Layout 
+--------------------------------------------------- */
+/* Layout mit schmaler Navigation links und Dokumentation rechts */
+.layout-docs {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Sidebar Nav (Sticky, damit sie beim Scrollen im Blick bleibt) */
+.layout-docs .sidebar-nav {
+  position: sticky;
+  top: 2rem;
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+/* Zeilenlängen-Begrenzung für gute Lesbarkeit */
+.layout-docs .doc-content article {
+  max-width: 800px;
+}
+
+@media (max-width: 900px) {
+  .layout-docs {
+    grid-template-columns: 1fr;
+  }
+  .layout-docs .sidebar-nav {
+    position: static;
+    height: auto;
+  }
+}
+
+/* ---------------------------------------------------
+   07 - Social / Feed Layout 
+--------------------------------------------------- */
+/* 3-Spalten Layout: Links Menü, Mitte Feed, Rechts Widgets */
+.layout-feed {
+  display: grid;
+  grid-template-columns: 250px minmax(500px, 1fr) 300px;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Tablet: Verberge rechte Sidebar */
+@media (max-width: 1024px) {
+  .layout-feed {
+    grid-template-columns: 200px 1fr; 
+  }
+  .layout-feed .sidebar-right {
+    display: none;
+  }
+}
+
+/* Mobile: Verberge auch linke Sidebar */
+@media (max-width: 768px) {
+  .layout-feed {
+    grid-template-columns: 1fr;
+  }
+  .layout-feed .sidebar-left {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------
+   08 - Pricing Page Layout 
+--------------------------------------------------- */
+/* Zentrierter Bereich für den Titel */
+.pricing-header {
+  text-align: center;
+  padding: 4rem 2rem 2rem 2rem;
+}
+
+/* Flexbox für Karten für Preispakete */
+.pricing-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Einheitliche Karten im Pricing Grid */
+.pricing-cards > div {
+  flex: 1 1 300px;
+  max-width: 350px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Page Layout</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- Navigation and Sign Up -->
+            <div class="logo">Logo</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Log in</a>
+                <a href="#" class="btn btn-primary">Sign up</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="pricing-header">
+            <h1>Simple, transparent pricing</h1>
+            <!-- Monthly / Yearly toggle -->
+            <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</p>
+            <div class="billing-toggle">
+                <span class="monthly">Monthly</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <span class="yearly">Yearly <span class="discount">Save 20%</span></span>
+            </div>
+        </section>
+        <section class="pricing-cards">
+            <!-- Free / Pro / Enterprise Cards -->
+            <div class="card basic-plan">
+                <h3>Basic</h3>
+                <div class="price"><span>$</span>10<span class="period">/mo</span></div>
+                <p class="plan-desc">Perfect for individuals getting started.</p>
+                <ul class="features-list">
+                    <li>✓ 1 User</li>
+                    <li>✓ 10 Projects</li>
+                    <li>✓ Basic Support</li>
+                    <li>✗ Analytics</li>
+                </ul>
+                <button class="btn btn-outline">Choose Basic</button>
+            </div>
+            
+            <div class="card pro-plan featured">
+                <div class="badge">Most Popular</div>
+                <h3>Pro</h3>
+                <div class="price"><span>$</span>29<span class="period">/mo</span></div>
+                <p class="plan-desc">Ideal for small teams and growing businesses.</p>
+                <ul class="features-list">
+                    <li>✓ 5 Users</li>
+                    <li>✓ Unlimited Projects</li>
+                    <li>✓ Priority Support</li>
+                    <li>✓ Advanced Analytics</li>
+                </ul>
+                <button class="btn btn-primary">Choose Pro</button>
+            </div>
+
+            <div class="card enterprise-plan">
+                <h3>Enterprise</h3>
+                <div class="price"><span>$</span>99<span class="period">/mo</span></div>
+                <p class="plan-desc">For large scale organizations with advanced needs.</p>
+                <ul class="features-list">
+                    <li>✓ Unlimited Users</li>
+                    <li>✓ Unlimited Projects</li>
+                    <li>✓ 24/7 Dedicated Support</li>
+                    <li>✓ Custom Integrations</li>
+                </ul>
+                <button class="btn btn-outline">Contact Sales</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
