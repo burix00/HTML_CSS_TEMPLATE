@@ -5,23 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docs / Knowledge Base Layout</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="06-docs-knowledge-base.css">
 </head>
 <body>
     <header>
-        <!-- Search and Logo -->
+        <div class="logo" style="font-weight: bold; font-size: 1.2em;">DocBase</div>
+        <div class="search" style="width: 300px;">
+            <input type="text" placeholder="Search documentation..." style="width: 100%; padding: 5px;">
+        </div>
     </header>
-    <div class="layout-docs">
-        <aside class="sidebar-nav">
-            <!-- Documentation Table of Contents -->
+    <div class="layout-docs" style="display: flex; min-height: calc(100vh - 60px);">
+        <aside class="sidebar-nav" style="width: 250px; border-right: 1px solid #ddd; padding: 20px;">
+            <h3>Getting Started</h3>
+            <ul style="list-style: none; padding-left: 10px; margin-bottom: 20px;">
+                <li><a href="#" style="font-weight: bold; color: #007bff;">Introduction</a></li>
+                <li><a href="#">Installation</a></li>
+                <li><a href="#">Quick Start</a></li>
+            </ul>
+            <h3>Core Concepts</h3>
+            <ul style="list-style: none; padding-left: 10px;">
+                <li><a href="#">Components</a></li>
+                <li><a href="#">State Management</a></li>
+                <li><a href="#">Routing</a></li>
+            </ul>
         </aside>
-        <main class="doc-content">
-            <!-- Breadcrumbs -->
+        <main class="doc-content" style="flex: 1; padding: 40px; max-width: 800px;">
+            <div class="breadcrumbs" style="color: #666; margin-bottom: 20px;">
+                Home &gt; Getting Started &gt; Introduction
+            </div>
             <article>
                 <h1>Introduction</h1>
-                <!-- Documentation Text and Code Blocks -->
+                <p>Welcome to DocBase! This knowledge base contains all the information you need to get up and running quickly. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h2>What is DocBase?</h2>
+                <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.</p>
+                <div class="code-block" style="background: #282c34; color: #abb2bf; padding: 15px; border-radius: 5px; margin: 20px 0; font-family: monospace;">
+                    <pre><code>npm install docbase-core
+import { init } from 'docbase-core';
+init();</code></pre>
+                </div>
+                <h2>Next Steps</h2>
+                <p>Head over to the Installation guide to set up your environment properly.</p>
             </article>
-            <nav class="pagination">
-                <!-- Previous / Next links -->
+            <nav class="pagination" style="display: flex; justify-content: space-between; margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd;">
+                <a href="#" class="prev" style="text-decoration: none;">&larr; Previous: Home</a>
+                <a href="#" class="next" style="text-decoration: none; font-weight: bold;">Next: Installation &rarr;</a>
             </nav>
         </main>
     </div>

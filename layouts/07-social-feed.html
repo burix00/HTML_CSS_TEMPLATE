@@ -5,22 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social / Feed Layout</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="07-social-feed.css">
 </head>
 <body>
-    <div class="layout-feed">
+    <div class="layout-feed" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 250px minmax(400px, 1fr) 300px; gap: 20px; padding: 20px;">
         <aside class="sidebar-left">
-            <!-- Main navigation -->
+            <div class="logo" style="margin-bottom: 30px; font-size: 1.5em; font-weight: bold;">SocialApp</div>
+            <nav style="display: flex; flex-direction: column; gap: 15px;">
+                <a href="#" style="text-decoration: none; font-weight: bold; color: #333;">🏠 Home</a>
+                <a href="#" style="text-decoration: none; color: #555;">🔍 Explore</a>
+                <a href="#" style="text-decoration: none; color: #555;">🔔 Notifications</a>
+                <a href="#" style="text-decoration: none; color: #555;">✉️ Messages</a>
+                <a href="#" style="text-decoration: none; color: #555;">👤 Profile</a>
+            </nav>
         </aside>
         <main class="feed-content">
-            <section class="compose-post">
-                <!-- What's on your mind? -->
+            <section class="compose-post" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; margin-bottom: 20px; background: #fff;">
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <div style="width: 40px; height: 40px; background: #ccc; border-radius: 50%;"></div>
+                    <textarea placeholder="What's on your mind?" style="width: 100%; border: none; resize: none; font-family: inherit; font-size: 1em;"></textarea>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 10px;">
+                    <div class="media-options">📷 📎 😃</div>
+                    <button style="background: #007bff; color: auto; padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer; color: white;">Post</button>
+                </div>
             </section>
-            <section class="posts">
-                <!-- Feed items -->
+            <section class="posts" style="display: flex; flex-direction: column; gap: 15px;">
+                <article class="post" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fff;">
+                    <header style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: #bbb; border-radius: 50%;"></div>
+                        <div>
+                            <strong>Alice Wonderland</strong><br>
+                            <span style="color: #777; font-size: 0.8em;">2 hours ago</span>
+                        </div>
+                    </header>
+                    <div class="post-body" style="margin-bottom: 15px;">
+                        <p>Just finished a great 10k run! The weather today is absolutely perfect for outdoor activities. 🏃‍♀️☀️</p>
+                    </div>
+                    <footer style="display: flex; gap: 20px; color: #555; border-top: 1px solid #eee; padding-top: 10px;">
+                        <span>❤️ 24</span>
+                        <span>💬 5</span>
+                        <span>🔁 2</span>
+                    </footer>
+                </article>
+                <article class="post" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fff;">
+                    <header style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: #aaa; border-radius: 50%;"></div>
+                        <div>
+                            <strong>Bob Builder</strong><br>
+                            <span style="color: #777; font-size: 0.8em;">5 hours ago</span>
+                        </div>
+                    </header>
+                    <div class="post-body" style="margin-bottom: 15px;">
+                        <p>Finally deployed the new feature set to production without breaking anything (I hope)! 😅</p>
+                        <div style="height: 150px; background: #e9ecef; border-radius: 4px; margin-top: 10px; display: flex; align-items: center; justify-content: center; color: #999;">Deployment Successful Image</div>
+                    </div>
+                    <footer style="display: flex; gap: 20px; color: #555; border-top: 1px solid #eee; padding-top: 10px;">
+                        <span>❤️ 156</span>
+                        <span>💬 32</span>
+                        <span>🔁 12</span>
+                    </footer>
+                </article>
             </section>
         </main>
         <aside class="sidebar-right">
-            <!-- Trending topics / Who to follow -->
+            <div class="trending" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; margin-bottom: 20px; background: #fff;">
+                <h3 style="margin-bottom: 15px;">Trending Topics</h3>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px;">
+                    <li>#WebDev</li>
+                    <li>#CSSArchitecture</li>
+                    <li>#JavaScriptTips</li>
+                    <li>#TechNews</li>
+                </ul>
+            </div>
+            <div class="who-to-follow" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fff;">
+                <h3 style="margin-bottom: 15px;">Who to follow</h3>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 30px; height: 30px; background: #ccc; border-radius: 50%;"></div>
+                        <span>Charlie</span>
+                    </div>
+                    <button style="border: 1px solid #007bff; color: #007bff; background: transparent; padding: 2px 10px; border-radius: 10px;">Follow</button>
+                </div>
+            </div>
         </aside>
     </div>
 </body>

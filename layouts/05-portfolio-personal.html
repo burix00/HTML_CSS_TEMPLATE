@@ -5,27 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio / Personal Layout</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="05-portfolio-personal.css">
 </head>
 <body>
     <header>
         <nav>
-            <!-- Links to Work, About, Contact -->
+            <div class="logo">John Doe</div>
+            <ul>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
         </nav>
     </header>
-    <main>
-        <section class="intro">
-            <!-- Profile Info and Bio -->
-                <p>a</p>
-                <h3>a</h3>
+    <main style="padding: 40px 20px; max-width: 1000px; margin: 0 auto;">
+        <section class="intro" style="text-align: center; margin-bottom: 60px;">
+            <img src="https://via.placeholder.com/150" alt="Profile" style="border-radius: 50%; margin-bottom: 20px;">
+            <h1>Hi, I'm John Doe.</h1>
+            <p style="font-size: 1.2em; max-width: 600px; margin: 0 auto;">I am a multidisciplinary designer and front-end developer based in New York. I specialize in building digital experiences that merge clean design with robust engineering.</p>
         </section>
-        <section class="portfolio-grid">
-            <!-- Project Cards -->
-             <p>a</p>
-             <h3>a</h3>
+        <section class="portfolio-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div class="project-card" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <div class="project-img" style="height: 200px; background: #ccc;"></div>
+                <div class="project-info" style="padding: 20px;">
+                    <h3>Project Alpha</h3>
+                    <p>Web Design & Development</p>
+                </div>
+            </div>
+            <div class="project-card" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <div class="project-img" style="height: 200px; background: #ccc;"></div>
+                <div class="project-info" style="padding: 20px;">
+                    <h3>Project Beta</h3>
+                    <p>UI/UX Design</p>
+                </div>
+            </div>
+            <div class="project-card" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <div class="project-img" style="height: 200px; background: #ccc;"></div>
+                <div class="project-info" style="padding: 20px;">
+                    <h3>Project Gamma</h3>
+                    <p>Mobile App Development</p>
+                </div>
+            </div>
         </section>
     </main>
-    <footer>
-        <!-- Connect / Social info -->
+    <footer style="text-align: center; padding: 40px; margin-top: 40px; border-top: 1px solid #eee;">
+        <h3>Let's work together</h3>
+        <p>john.doe@example.com</p>
+        <div class="social-links" style="margin-top: 20px; font-size: 1.5em;">
+            <a href="#" style="margin: 0 10px;">🌍</a>
+            <a href="#" style="margin: 0 10px;">🐦</a>
+            <a href="#" style="margin: 0 10px;">📸</a>
+        </div>
     </footer>
 </body>
 </html>

@@ -5,23 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce / Shop Layout</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="04-ecommerce-shop.css">
 </head>
 <body>
     <header>
         <nav>
-            <!-- Shop Navigation, Search, and Cart -->
+            <div class="logo">E-Shop</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search products...">
+                <button>Search</button>
+            </div>
+            <div class="cart">🛒 Cart (2)</div>
         </nav>
     </header>
     <div class="container layout-sidebar-left">
-        <aside class="filters">
-            <!-- Category and Price Filters -->
+        <aside class="filters" style="padding: 20px; border-right: 1px solid #ddd;">
+            <h3>Categories</h3>
+            <ul>
+                <li><label><input type="checkbox"> Electronics</label></li>
+                <li><label><input type="checkbox"> Clothing</label></li>
+                <li><label><input type="checkbox"> Home & Garden</label></li>
+            </ul>
+            <h3 style="margin-top: 20px;">Price Range</h3>
+            <input type="range" min="0" max="1000" style="width: 100%;">
+            <p>$0 - $1000+</p>
         </aside>
-        <main class="product-grid">
-            <header>
-                <!-- Sort dropdown and Results count -->
+        <main class="product-grid" style="padding: 20px;">
+            <header style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <span>Results: 120 products found</span>
+                <select>
+                    <option>Sort by Recommended</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                </select>
             </header>
-            <div class="products">
-                <!-- Product cards -->
+            <div class="products" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
+                <div class="product-card" style="border: 1px solid #ddd; padding: 15px; text-align: center;">
+                    <div class="product-img" style="background: #f0f0f0; height: 150px; margin-bottom: 15px;">Img</div>
+                    <h4>Wireless Headphones</h4>
+                    <p>$99.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product-card" style="border: 1px solid #ddd; padding: 15px; text-align: center;">
+                    <div class="product-img" style="background: #f0f0f0; height: 150px; margin-bottom: 15px;">Img</div>
+                    <h4>Smart Watch</h4>
+                    <p>$149.50</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product-card" style="border: 1px solid #ddd; padding: 15px; text-align: center;">
+                    <div class="product-img" style="background: #f0f0f0; height: 150px; margin-bottom: 15px;">Img</div>
+                    <h4>Running Shoes</h4>
+                    <p>$85.00</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product-card" style="border: 1px solid #ddd; padding: 15px; text-align: center;">
+                    <div class="product-img" style="background: #f0f0f0; height: 150px; margin-bottom: 15px;">Img</div>
+                    <h4>Coffee Maker</h4>
+                    <p>$120.00</p>
+                    <button>Add to Cart</button>
+                </div>
             </div>
         </main>
     </div>
