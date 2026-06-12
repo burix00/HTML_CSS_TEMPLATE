@@ -1,0 +1,1209 @@
+/* =================================================================
+   STYLE.CSS – VOLLSTÄNDIGE CSS REFERENZ MIT ERKLÄRUNGEN
+   Für Prüfung: Mockup auf Papier → HTML/CSS rekonstruieren
+================================================================= */
+
+/* =================================================================
+   1. CSS RESET & GRUNDLAGEN
+================================================================= */
+
+/* Universal-Selektor: Wirkt auf ALLE Elemente */
+* {
+  box-sizing: border-box;
+  /* box-sizing: border-box = Padding und Border werden IN die Breite eingerechnet.
+     IMMER setzen! Sonst wird ein div mit width:200px + padding:20px = 240px breit */
+  margin: 0;
+  /* margin: 0 = Entfernt alle Standard-Außenabstände des Browsers */
+  padding: 0;
+  /* padding: 0 = Entfernt alle Standard-Innenabstände des Browsers */
+}
+
+/* HTML & BODY Grundeinstellungen */
+html {
+  font-size: 16px;
+  /* Basis-Schriftgröße. 1rem = 16px (wenn hier 16px gesetzt) */
+  scroll-behavior: smooth;
+  /* scroll-behavior: smooth = Sanftes Scrollen bei Anker-Links (#id) */
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Schriftart (erste verfügbar wird genommen)
+     Fallback-Kette: spezifisch → generisch
+     serif = Mit Serifen (Times New Roman)
+     sans-serif = Ohne Serifen (Arial, Helvetica)
+     monospace = Festbreite (Courier, Consolas)
+     cursive = Handschrift
+     fantasy = Dekorativ */
+  font-size: 1rem;           /* 16px – relativ zur html font-size */
+  line-height: 1.6;          /* Zeilenabstand: 1.6× die Schriftgröße */
+  color: #333333;            /* Textfarbe (dunkelgrau) */
+  background-color: #ffffff; /* Hintergrundfarbe (weiß) */
+  min-height: 100vh;         /* Mindestens volle Bildschirmhöhe */
+}
+
+
+/* =================================================================
+   2. SELEKTOREN – WIE MAN ELEMENTE AUSWÄHLT
+================================================================= */
+
+/* Element-Selektor: Wirkt auf ALLE <p> Tags */
+p {
+  margin-bottom: 1rem;
+}
+
+/* Klassen-Selektor: Wirkt auf alle Elemente mit class="container" */
+.container {
+  max-width: 1200px;
+  margin: 0 auto; /* Zentriert den Container horizontal */
+  padding: 0 20px;
+}
+
+/* ID-Selektor: Wirkt auf DAS EINE Element mit id="header" */
+#header {
+  background-color: #2c3e50;
+}
+
+/* Kombinations-Selektoren */
+.card p {
+  /* Alle <p> die sich IN einem Element mit class="card" befinden */
+  color: #666;
+}
+
+.nav > li {
+  /* Alle direkten Kinder <li> eines Elements mit class="nav" */
+  display: inline-block;
+}
+
+h1 + p {
+  /* Das DIREKT FOLGENDE <p> nach einem <h1> */
+  font-size: 1.2rem;
+}
+
+h2 ~ p {
+  /* ALLE folgenden <p> nach einem <h2> auf gleicher Ebene */
+  color: gray;
+}
+
+/* Pseudo-Klassen: Zustände von Elementen */
+a:hover {
+  /* Wenn Maus über dem Link ist */
+  color: #e74c3c;
+  text-decoration: underline;
+}
+
+a:active {
+  /* Wenn Link gerade geklickt wird */
+  color: #c0392b;
+}
+
+a:visited {
+  /* Bereits besuchter Link */
+  color: #9b59b6;
+}
+
+a:focus {
+  /* Wenn Element mit Tab ausgewählt ist (Barrierefreiheit!) */
+  outline: 2px solid #3498db;
+}
+
+button:disabled {
+  /* Deaktivierter Button */
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input:checked {
+  /* Angehakte Checkbox / ausgewählter Radio-Button */
+  accent-color: #3498db;
+}
+
+input:required {
+  border: 1px solid red;
+}
+
+/* :nth-child Selektoren */
+li:first-child { font-weight: bold; }    /* Erstes Kind */
+li:last-child { color: red; }            /* Letztes Kind */
+li:nth-child(2) { color: blue; }         /* Genau das 2. Kind */
+li:nth-child(odd) { background: #f5f5f5; }  /* Ungerade: 1, 3, 5... */
+li:nth-child(even) { background: #fff; }    /* Gerade: 2, 4, 6... */
+li:nth-child(3n) { color: green; }       /* Jedes 3. Element */
+p:not(.spezial) { color: gray; }         /* Alle <p> AUSSER denen mit class="spezial" */
+
+/* Pseudo-Elemente: Teile von Elementen */
+p::first-letter {
+  /* Erster Buchstabe eines Absatzes */
+  font-size: 2rem;
+  font-weight: bold;
+  float: left;
+  margin-right: 4px;
+}
+
+p::first-line {
+  /* Erste Zeile eines Absatzes */
+  font-weight: bold;
+}
+
+.button::before {
+  /* Eingefügter Inhalt VOR dem Element */
+  content: "→ ";  /* content: PFLICHT für ::before und ::after */
+}
+
+.button::after {
+  /* Eingefügter Inhalt NACH dem Element */
+  content: " ←";
+}
+
+::selection {
+  /* Markierter Text (wenn User Text auswählt) */
+  background-color: #3498db;
+  color: white;
+}
+
+::placeholder {
+  /* Placeholder-Text in Inputs */
+  color: #aaa;
+  font-style: italic;
+}
+
+
+/* =================================================================
+   3. FARBEN & HINTERGRUND
+================================================================= */
+
+.farben-beispiele {
+  /* Farb-Notationen: */
+  color: red;                     /* Name (begrenzte Auswahl) */
+  color: #ff0000;                 /* HEX 6-stellig */
+  color: #f00;                    /* HEX 3-stellig (Kurzform von #ff0000) */
+  color: #ff000088;               /* HEX 8-stellig (letzten 2 = Transparenz) */
+  color: rgb(255, 0, 0);          /* RGB: Rot, Grün, Blau (0-255) */
+  color: rgba(255, 0, 0, 0.5);    /* RGBA: + Alpha/Transparenz (0=unsichtbar, 1=voll) */
+  color: hsl(0, 100%, 50%);       /* HSL: Farbton (0-360), Sättigung, Helligkeit */
+  color: hsla(0, 100%, 50%, 0.5); /* HSLA: + Alpha */
+  color: transparent;             /* Vollständig transparent */
+  color: currentColor;            /* Erbt die aktuelle Textfarbe */
+}
+
+.hintergrund {
+  /* Hintergrundfarbe */
+  background-color: #f5f5f5;
+
+  /* Hintergrundbild */
+  background-image: url("bild.jpg");
+
+  /* Wie das Bild wiederholt wird */
+  background-repeat: no-repeat;  /* Kein Wiederholen */
+  background-repeat: repeat;     /* In beide Richtungen (Standard) */
+  background-repeat: repeat-x;   /* Nur horizontal */
+  background-repeat: repeat-y;   /* Nur vertikal */
+
+  /* Position des Hintergrundbildes */
+  background-position: center center;  /* Zentriert (x y) */
+  background-position: top left;
+  background-position: 50% 50%;        /* In Prozent */
+  background-position: 20px 40px;      /* In Pixel */
+
+  /* Größe des Hintergrundbildes */
+  background-size: cover;    /* Bedeckt gesamten Bereich (kann abschneiden) */
+  background-size: contain;  /* Ganzes Bild sichtbar (kann Lücken lassen) */
+  background-size: 100% 100%; /* Exakte Größe */
+  background-size: 300px 200px;
+
+  /* Scrollt das Hintergrundbild mit oder bleibt es fix? */
+  background-attachment: fixed;  /* Parallax-Effekt! Bleibt beim Scrollen */
+  background-attachment: scroll; /* Scrollt mit (Standard) */
+
+  /* Kurzschreibweise (Reihenfolge: color image repeat position/size attachment) */
+  background: #fff url("bild.jpg") no-repeat center center / cover;
+
+  /* Farbverlauf (Gradient) */
+  background: linear-gradient(to right, #3498db, #9b59b6);
+  /* to right = von links nach rechts
+     to bottom = von oben nach unten
+     45deg = diagonaler Verlauf */
+
+  background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 50%, #6bcb77 100%);
+  /* Mehrere Farben mit Prozent-Stopp */
+
+  background: radial-gradient(circle, #ff6b6b, #9b59b6);
+  /* Kreisförmiger Verlauf */
+}
+
+
+/* =================================================================
+   4. SCHRIFT & TEXT
+================================================================= */
+
+.text-eigenschaften {
+  /* SCHRIFTART */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  /* SCHRIFTGRÖSSE */
+  font-size: 16px;       /* Pixel */
+  font-size: 1rem;       /* Relativ zur Root (html) – EMPFOHLEN */
+  font-size: 1.2em;      /* Relativ zum Elternelement */
+  font-size: 120%;       /* Prozent des Elternelements */
+  font-size: large;      /* Keywords: small, medium, large, x-large, xx-large */
+
+  /* SCHRIFTGEWICHT (Dicke) */
+  font-weight: normal;   /* = 400 */
+  font-weight: bold;     /* = 700 */
+  font-weight: 100;      /* Dünn (Thin) */
+  font-weight: 300;      /* Light */
+  font-weight: 500;      /* Medium */
+  font-weight: 600;      /* Semi-Bold */
+  font-weight: 800;      /* Extra-Bold */
+  font-weight: 900;      /* Black */
+
+  /* SCHRIFTSTIL */
+  font-style: normal;
+  font-style: italic;    /* Kursiv */
+  font-style: oblique;   /* Schräg (ähnlich italic) */
+
+  /* SCHRIFT-VARIANTE */
+  font-variant: small-caps; /* Kleine Großbuchstaben */
+
+  /* KURZFORM für font */
+  font: italic bold 1.2rem/1.6 'Arial', sans-serif;
+  /* font: style weight size/line-height family */
+
+  /* TEXTAUSRICHTUNG */
+  text-align: left;     /* Links (Standard für LTR) */
+  text-align: right;    /* Rechts */
+  text-align: center;   /* Zentriert */
+  text-align: justify;  /* Blocksatz (beide Seiten bündig) */
+
+  /* VERTIKALE TEXTAUSRICHTUNG (für inline/table Elemente) */
+  vertical-align: middle;   /* Mittig */
+  vertical-align: top;      /* Oben */
+  vertical-align: bottom;   /* Unten */
+  vertical-align: baseline; /* Grundlinie (Standard) */
+
+  /* TEXTDEKORATION */
+  text-decoration: none;          /* Keine (entfernt Unterstrich von Links!) */
+  text-decoration: underline;     /* Unterstrichen */
+  text-decoration: overline;      /* Überlinie */
+  text-decoration: line-through;  /* Durchgestrichen */
+  text-decoration: underline dotted #3498db; /* Farbe und Stil */
+
+  /* TEXTTRANSFORMATION */
+  text-transform: uppercase;   /* GROSSBUCHSTABEN */
+  text-transform: lowercase;   /* kleinbuchstaben */
+  text-transform: capitalize;  /* Erster Buchstabe Groß */
+  text-transform: none;        /* Original */
+
+  /* TEXTEINRÜCKUNG */
+  text-indent: 2em;  /* Erste Zeile einrücken */
+
+  /* ZEICHENABSTAND */
+  letter-spacing: 0.1em;  /* Abstand zwischen Buchstaben */
+  letter-spacing: 2px;
+
+  /* WORTABSTAND */
+  word-spacing: 0.5em;  /* Abstand zwischen Wörtern */
+
+  /* ZEILENABSTAND */
+  line-height: 1.6;     /* Empfohlener Wert: 1.4–1.8 */
+  line-height: 24px;
+  line-height: 150%;
+
+  /* TEXTSCHATTEN */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  /* text-shadow: x-offset y-offset blur-radius farbe */
+  /* Mehrere Schatten mit Komma trennen */
+  text-shadow: 1px 1px 0 #000, 2px 2px 0 #333;
+
+  /* ZEILENUMBRUCH */
+  white-space: normal;    /* Standard: Bricht bei Leerzeichen um */
+  white-space: nowrap;    /* KEIN Umbruch (Text geht über den Container hinaus) */
+  white-space: pre;       /* Wie <pre>: behält Leerzeichen + Umbrüche */
+  white-space: pre-wrap;  /* Wie pre aber mit Umbruch am Container-Ende */
+
+  /* ÜBERLAUFENDER TEXT */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* Zeigt "..." wenn Text zu lang → zusammen mit overflow:hidden */
+
+  /* WORT-UMBRUCH */
+  word-wrap: break-word;    /* Bricht lange Wörter um */
+  overflow-wrap: break-word;
+  word-break: break-all;    /* Bricht auch mitten im Wort */
+
+  /* SCHRIFT MIT GOOGLE FONTS (in <head> einbinden!) */
+  /* <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> */
+  font-family: 'Roboto', sans-serif;
+}
+
+
+/* =================================================================
+   5. BOX-MODELL: MARGIN, PADDING, BORDER
+================================================================= */
+
+/*
+  Das CSS Box-Modell:
+  ┌─────────────────────────────┐
+  │         MARGIN              │  ← Außenabstand (unsichtbar, kein Hintergrund)
+  │  ┌───────────────────────┐  │
+  │  │       BORDER          │  │  ← Rahmen
+  │  │  ┌─────────────────┐  │  │
+  │  │  │    PADDING      │  │  │  ← Innenabstand (hat Hintergrundfarbe)
+  │  │  │  ┌───────────┐  │  │  │
+  │  │  │  │  CONTENT  │  │  │  │  ← Inhalt (Text, Bilder)
+  │  │  │  └───────────┘  │  │  │
+  │  │  └─────────────────┘  │  │
+  │  └───────────────────────┘  │
+  └─────────────────────────────┘
+*/
+
+.box-modell {
+  /* BREITE & HÖHE */
+  width: 300px;          /* Feste Breite */
+  width: 50%;            /* Prozent des Elternelements */
+  width: auto;           /* Browser berechnet automatisch */
+  max-width: 1200px;     /* Maximale Breite (für responsive) */
+  min-width: 200px;      /* Mindestbreite */
+
+  height: 200px;         /* Feste Höhe */
+  height: auto;          /* Höhe passt sich dem Inhalt an */
+  max-height: 500px;
+  min-height: 100px;
+  min-height: 100vh;     /* Mindestens volle Bildschirmhöhe */
+
+  /* PADDING (Innenabstand) */
+  padding: 20px;                  /* Alle 4 Seiten gleich */
+  padding: 10px 20px;             /* Oben/Unten  Links/Rechts */
+  padding: 10px 20px 15px;        /* Oben  Links/Rechts  Unten */
+  padding: 10px 20px 15px 5px;    /* Oben  Rechts  Unten  Links (Uhrzeigersinn!) */
+  padding-top: 10px;              /* Einzelne Seiten */
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+
+  /* MARGIN (Außenabstand) */
+  margin: 20px;                   /* Alle 4 Seiten gleich */
+  margin: 10px 20px;              /* Oben/Unten  Links/Rechts */
+  margin: 0 auto;                 /* ZENTRIERT horizontal! (oben/unten: 0, links/rechts: auto) */
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin: -10px;                  /* Negativer Margin: Element überlappt */
+
+  /* BORDER (Rahmen) */
+  border: 1px solid #000;         /* Breite  Stil  Farbe */
+  border: 2px dashed #3498db;
+  border: 3px dotted red;
+
+  border-width: 1px;              /* Einzelne Eigenschaften */
+  border-style: solid;            /* solid, dashed, dotted, double, none, hidden */
+  border-color: #333;
+
+  border-top: 1px solid red;      /* Einzelne Seiten */
+  border-right: 2px dashed blue;
+  border-bottom: 3px dotted green;
+  border-left: none;
+
+  /* ABGERUNDETE ECKEN */
+  border-radius: 5px;             /* Alle Ecken gleich */
+  border-radius: 50%;             /* Kreis/Oval (bei gleicher Breite+Höhe = Kreis) */
+  border-radius: 10px 20px;       /* Oben-Links/Unten-Rechts  Oben-Rechts/Unten-Links */
+  border-radius: 5px 10px 15px 20px; /* Einzeln im Uhrzeigersinn */
+
+  /* UMRISS (wie Border aber außerhalb des Box-Modells, nimmt keinen Platz ein) */
+  outline: 2px solid #3498db;
+  outline-offset: 4px;           /* Abstand zwischen Element und Outline */
+
+  /* ÜBERLAUF */
+  overflow: visible;    /* Inhalt ragt heraus (Standard) */
+  overflow: hidden;     /* Überlaufender Inhalt wird abgeschnitten */
+  overflow: scroll;     /* Scrollbar immer sichtbar */
+  overflow: auto;       /* Scrollbar nur wenn nötig (EMPFOHLEN) */
+  overflow-x: hidden;   /* Nur horizontal */
+  overflow-y: auto;     /* Nur vertikal */
+}
+
+
+/* =================================================================
+   6. DISPLAY & SICHTBARKEIT
+================================================================= */
+
+.display-arten {
+  display: block;         /* Nimmt volle Breite ein, neue Zeile (div, p, h1) */
+  display: inline;        /* Im Textfluss, keine Breite/Höhe setzbar (span, a) */
+  display: inline-block;  /* Im Textfluss ABER Breite/Höhe setzbar */
+  display: none;          /* Element komplett ausblenden (kein Platz reserviert!) */
+  display: flex;          /* Flexbox-Container */
+  display: inline-flex;   /* Inline Flexbox-Container */
+  display: grid;          /* Grid-Container */
+  display: inline-grid;   /* Inline Grid-Container */
+  display: table;         /* Verhält sich wie eine Tabelle */
+  display: list-item;     /* Verhält sich wie <li> */
+
+  /* SICHTBARKEIT */
+  visibility: visible;  /* Sichtbar (Standard) */
+  visibility: hidden;   /* Unsichtbar ABER Platz wird reserviert! (≠ display:none) */
+
+  /* TRANSPARENZ */
+  opacity: 0;     /* Vollständig transparent (unsichtbar aber Platz reserviert) */
+  opacity: 0.5;   /* Halb transparent */
+  opacity: 1;     /* Vollständig sichtbar (Standard) */
+}
+
+
+/* =================================================================
+   7. FLEXBOX – 1-DIMENSIONALES LAYOUT
+================================================================= */
+
+/* FLEX-CONTAINER (Elternelement) */
+.flex-container {
+  display: flex;            /* Flexbox aktivieren */
+  display: inline-flex;     /* Inline-Variante */
+
+  /* RICHTUNG der Flex-Elemente */
+  flex-direction: row;            /* Links nach rechts (Standard) */
+  flex-direction: row-reverse;    /* Rechts nach links */
+  flex-direction: column;         /* Von oben nach unten */
+  flex-direction: column-reverse; /* Von unten nach oben */
+
+  /* UMBRUCH (gehen Items in neue Zeile?) */
+  flex-wrap: nowrap;    /* Alle in einer Zeile (Standard, kann überlaufen!) */
+  flex-wrap: wrap;      /* Umbricht wenn kein Platz → EMPFOHLEN */
+  flex-wrap: wrap-reverse;
+
+  /* KURZFORM: flex-direction + flex-wrap */
+  flex-flow: row wrap;
+
+  /* AUSRICHTUNG der Items entlang der Hauptachse (flex-direction) */
+  justify-content: flex-start;    /* Am Anfang (Standard) */
+  justify-content: flex-end;      /* Am Ende */
+  justify-content: center;        /* Zentriert ← SEHR NÜTZLICH */
+  justify-content: space-between; /* Gleicher Abstand ZWISCHEN Items */
+  justify-content: space-around;  /* Gleicher Abstand UM Items */
+  justify-content: space-evenly;  /* Exakt gleiche Abstände überall */
+
+  /* AUSRICHTUNG der Items entlang der QUER-Achse */
+  align-items: stretch;      /* Dehnt Items auf volle Höhe (Standard) */
+  align-items: flex-start;   /* Am Anfang der Querachse */
+  align-items: flex-end;     /* Am Ende */
+  align-items: center;       /* Zentriert ← SEHR NÜTZLICH (vertikale Zentrierung!) */
+  align-items: baseline;     /* An der Textgrundlinie ausrichten */
+
+  /* AUSRICHTUNG von MEHREREN ZEILEN (nur bei flex-wrap) */
+  align-content: flex-start;
+  align-content: flex-end;
+  align-content: center;
+  align-content: space-between;
+  align-content: space-around;
+  align-content: stretch;   /* Standard */
+
+  /* ABSTAND ZWISCHEN ITEMS (moderner Weg!) */
+  gap: 20px;          /* Gleichmäßiger Abstand in alle Richtungen */
+  gap: 10px 20px;     /* row-gap  column-gap */
+  row-gap: 10px;      /* Nur zwischen Zeilen */
+  column-gap: 20px;   /* Nur zwischen Spalten */
+}
+
+/* FLEX-ITEMS (Kindelemente) */
+.flex-item {
+  /* WIE STARK wächst das Item wenn Platz übrig ist */
+  flex-grow: 0;   /* Wächst nicht (Standard) */
+  flex-grow: 1;   /* Wächst proportional (nimmt verfügbaren Platz) */
+  flex-grow: 2;   /* Wächst doppelt so schnell wie flex-grow: 1 */
+
+  /* WIE STARK schrumpft das Item wenn zu wenig Platz */
+  flex-shrink: 1;  /* Schrumpft (Standard) */
+  flex-shrink: 0;  /* Schrumpft NICHT (behält seine Breite!) */
+
+  /* BASIS-GRÖSSE des Items */
+  flex-basis: auto;   /* Basiert auf Inhalt (Standard) */
+  flex-basis: 200px;  /* Feste Basisbreite */
+  flex-basis: 33.33%; /* Ein Drittel des Containers */
+
+  /* KURZFORM: flex-grow flex-shrink flex-basis */
+  flex: 1;              /* = flex: 1 1 0 (wächst und schrumpft gleichmäßig) */
+  flex: 1 1 auto;
+  flex: 0 0 200px;      /* Feste 200px, wächst und schrumpft nicht */
+  flex: none;           /* = flex: 0 0 auto */
+
+  /* REIHENFOLGE */
+  order: 0;    /* Standard-Reihenfolge */
+  order: 1;    /* Nach hinten schieben */
+  order: -1;   /* Nach vorne schieben */
+
+  /* EINZELNES ITEM ANDERS AUSRICHTEN */
+  align-self: auto;        /* Erbt vom Container */
+  align-self: flex-start;
+  align-self: flex-end;
+  align-self: center;      /* Dieses Item vertikal zentrieren */
+  align-self: stretch;
+}
+
+/* HÄUFIGE FLEXBOX PATTERNS */
+
+/* Elemente horizontal und vertikal zentrieren */
+.zentriert {
+  display: flex;
+  justify-content: center;  /* Horizontal zentrieren */
+  align-items: center;      /* Vertikal zentrieren */
+}
+
+/* Navigation nebeneinander */
+.nav-horizontal {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+/* Karten gleichmäßig aufteilen */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-grid .card {
+  flex: 1 1 300px; /* Mindestens 300px, wächst gleichmäßig */
+}
+
+
+/* =================================================================
+   8. CSS GRID – 2-DIMENSIONALES LAYOUT
+================================================================= */
+
+/* GRID-CONTAINER */
+.grid-container {
+  display: grid;
+
+  /* SPALTEN DEFINIEREN */
+  grid-template-columns: 200px 200px 200px;   /* 3 Spalten à 200px */
+  grid-template-columns: 1fr 1fr 1fr;         /* 3 gleiche Spalten (fr = fraction) */
+  grid-template-columns: 1fr 2fr 1fr;         /* Mitte doppelt so breit */
+  grid-template-columns: 200px 1fr;           /* Sidebar fest, Rest variabel */
+  grid-template-columns: repeat(3, 1fr);      /* Kurzform: 3 gleiche Spalten */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive! */
+  /* auto-fit: Fügt so viele Spalten ein wie reinpassen
+     minmax(200px, 1fr): Mindestens 200px, maximal 1fr */
+
+  /* ZEILEN DEFINIEREN */
+  grid-template-rows: 100px 200px auto;  /* Feste + automatische Höhe */
+  grid-template-rows: repeat(3, 1fr);
+
+  /* ABSTAND ZWISCHEN ZELLEN */
+  gap: 20px;
+  column-gap: 20px;
+  row-gap: 10px;
+
+  /* BENANNTE BEREICHE */
+  grid-template-areas:
+    "header  header  header"
+    "sidebar main    main"
+    "footer  footer  footer";
+  /* Grid-Bereiche benennen – dann per grid-area zuweisen */
+
+  /* AUSRICHTUNG aller Items */
+  justify-items: stretch;  /* Horizontal: stretch, start, end, center */
+  align-items: stretch;    /* Vertikal:   stretch, start, end, center */
+  place-items: center;     /* Kurzform: align-items + justify-items */
+
+  /* AUSRICHTUNG des gesamten Grids im Container */
+  justify-content: start;  /* start, end, center, space-between, space-around */
+  align-content: start;
+}
+
+/* GRID-ITEMS (Kindelemente) */
+.grid-item {
+
+  /* SPALTEN-POSITION */
+  grid-column: 1;           /* Nur in Spalte 1 */
+  grid-column: 1 / 3;       /* Von Spalte 1 bis 3 (= 2 Spalten) */
+  grid-column: 1 / -1;      /* Von Anfang bis Ende (ganze Zeile!) */
+  grid-column: span 2;      /* Nimmt 2 Spalten ein */
+  grid-column-start: 2;     /* Beginnt in Spalte 2 */
+  grid-column-end: 4;       /* Endet vor Spalte 4 */
+
+  /* ZEILEN-POSITION */
+  grid-row: 1;
+  grid-row: 1 / 3;          /* Von Zeile 1 bis 3 */
+  grid-row: span 2;         /* Nimmt 2 Zeilen ein */
+
+  /* BENANNTER BEREICH */
+  grid-area: header;        /* Weist den benannten Bereich zu */
+
+  /* EINZELNES ITEM AUSRICHTEN */
+  justify-self: center;     /* Horizontal ausrichten */
+  align-self: center;       /* Vertikal ausrichten */
+  place-self: center;       /* Beides gleichzeitig */
+}
+
+/* GRID LAYOUT BEISPIELE */
+
+/* Classic 12-Spalten Grid */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+.col-6 { grid-column: span 6; }   /* Halbe Breite */
+.col-4 { grid-column: span 4; }   /* Ein Drittel */
+.col-3 { grid-column: span 3; }   /* Ein Viertel */
+
+/* Holy Grail Layout */
+.holy-grail {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header header"
+    "nav    main   aside"
+    "footer footer footer";
+  min-height: 100vh;
+}
+
+.holy-grail header { grid-area: header; }
+.holy-grail nav    { grid-area: nav; }
+.holy-grail main   { grid-area: main; }
+.holy-grail aside  { grid-area: aside; }
+.holy-grail footer { grid-area: footer; }
+
+
+/* =================================================================
+   9. POSITION & Z-INDEX
+================================================================= */
+
+.positionierung {
+  /* POSITION */
+  position: static;    /* Standard: Normaler Dokumentenfluss */
+  position: relative;  /* Relativ zur normalen Position verschoben */
+  position: absolute;  /* Aus dem Fluss heraus, relativ zum nächsten
+                          POSITIONIERTEN (non-static) Elternelement */
+  position: fixed;     /* Fixiert am Bildschirm (bleibt beim Scrollen) */
+  position: sticky;    /* Bleibt beim Scrollen an Stelle kleben */
+
+  /* VERSCHIEBUNG (funktioniert nur bei position ≠ static) */
+  top: 10px;      /* Abstand von oben */
+  right: 10px;    /* Abstand von rechts */
+  bottom: 10px;   /* Abstand von unten */
+  left: 10px;     /* Abstand von links */
+
+  /* Z-INDEX (Stapelreihenfolge) – höher = weiter vorne */
+  z-index: 1;
+  z-index: 100;
+  z-index: 9999;   /* Typisch für Modals/Popups */
+  z-index: -1;     /* Hinter normalen Elementen */
+}
+
+/* BEISPIELE */
+
+/* Sticky Navbar */
+.sticky-nav {
+  position: sticky;
+  top: 0;          /* Bleibt oben kleben wenn gescrollt wird */
+  z-index: 100;
+  background: white;
+}
+
+/* Absolut positioniertes Overlay */
+.karte-container {
+  position: relative; /* Referenzpunkt für absolutes Kind */
+}
+
+.karte-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  /* Setzt in die obere rechte Ecke des Containers */
+}
+
+/* Zentriertes Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* =================================================================
+   10. SCHATTEN & EFFEKTE
+================================================================= */
+
+.schatten {
+  /* BOX-SCHATTEN */
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+  /* box-shadow: x-offset y-offset blur-radius color */
+
+  box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.2);
+  /* 4. Wert = spread-radius (+ vergrößert, - verkleinert Schatten) */
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  /* x=0, y=0 = gleichmäßiger Schatten rundum */
+
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+  /* inset = Innenschatten */
+
+  box-shadow: 2px 2px 5px #000, -2px -2px 5px #fff;
+  /* Mehrere Schatten mit Komma trennen */
+
+  /* CSS FILTER */
+  filter: blur(5px);           /* Unscharf/verschwommen */
+  filter: brightness(0.5);     /* Dunkler (< 1) oder Heller (> 1) */
+  filter: contrast(200%);      /* Kontrast erhöhen */
+  filter: grayscale(100%);     /* Graustufen */
+  filter: sepia(50%);          /* Sepia-Ton */
+  filter: hue-rotate(90deg);   /* Farbton drehen */
+  filter: saturate(200%);      /* Sättigung erhöhen */
+  filter: invert(100%);        /* Farben invertieren */
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3)); /* Schlagschatten */
+  filter: blur(2px) brightness(0.8); /* Mehrere kombinieren */
+
+  /* CURSOR */
+  cursor: default;    /* Standard-Pfeil */
+  cursor: pointer;    /* Hand (für klickbare Elemente) */
+  cursor: text;       /* Text-Cursor */
+  cursor: move;       /* Verschiebe-Cursor */
+  cursor: not-allowed; /* Verboten-Symbol */
+  cursor: wait;       /* Warte/Ladeanimation */
+  cursor: crosshair;  /* Fadenkreuz */
+  cursor: grab;       /* Hand zum Greifen */
+  cursor: none;       /* Kein Cursor */
+}
+
+
+/* =================================================================
+   11. TRANSFORM – ELEMENTE TRANSFORMIEREN
+================================================================= */
+
+.transformationen {
+  /* VERSCHIEBEN */
+  transform: translateX(50px);          /* Horizontal verschieben */
+  transform: translateY(-20px);         /* Vertikal verschieben */
+  transform: translate(50px, -20px);    /* Beide Achsen */
+  transform: translateX(50%);           /* 50% der eigenen Breite */
+
+  /* SKALIEREN */
+  transform: scale(1.2);        /* 20% größer */
+  transform: scale(0.8);        /* 20% kleiner */
+  transform: scaleX(2);         /* Nur horizontal strecken */
+  transform: scaleY(0.5);       /* Nur vertikal stauchen */
+
+  /* DREHEN */
+  transform: rotate(45deg);     /* 45 Grad im Uhrzeigersinn */
+  transform: rotate(-90deg);    /* 90 Grad gegen Uhrzeigersinn */
+
+  /* SCHRÄGEN */
+  transform: skewX(15deg);      /* Horizontal schräg */
+  transform: skewY(10deg);      /* Vertikal schräg */
+  transform: skew(15deg, 10deg);
+
+  /* KOMBINIEREN (Reihenfolge wichtig!) */
+  transform: translateX(50px) rotate(45deg) scale(1.1);
+
+  /* TRANSFORMATIONS-URSPRUNG */
+  transform-origin: center center;  /* Standardmäßig Mitte */
+  transform-origin: top left;       /* Ecke oben links */
+  transform-origin: 50% 50%;
+  transform-origin: 0 0;
+}
+
+
+/* =================================================================
+   12. TRANSITIONS & ANIMATIONEN
+================================================================= */
+
+/* TRANSITIONS (weiche Übergänge bei Zustandsänderungen) */
+.transition-beispiel {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+
+  transition: background-color 0.3s ease;
+  /* transition: eigenschaft dauer timing-funktion */
+
+  transition: all 0.3s ease;
+  /* all = ALLE Eigenschaften animieren */
+
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  /* Mehrere: mit Komma trennen */
+
+  /* TIMING-FUNKTIONEN */
+  transition-timing-function: ease;        /* Langsam → Schnell → Langsam (Standard) */
+  transition-timing-function: linear;      /* Gleichmäßig */
+  transition-timing-function: ease-in;     /* Langsam starten */
+  transition-timing-function: ease-out;    /* Langsam enden */
+  transition-timing-function: ease-in-out; /* Beides */
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); /* Benutzerdefiniert */
+}
+
+.transition-beispiel:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+/* KEYFRAME ANIMATIONEN */
+@keyframes einblenden {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulsieren {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes farbe-wechseln {
+  0%   { background-color: red; }
+  33%  { background-color: yellow; }
+  66%  { background-color: green; }
+  100% { background-color: red; }
+}
+
+.animiert {
+  animation-name: einblenden;        /* Name der @keyframes */
+  animation-duration: 0.5s;          /* Dauer */
+  animation-timing-function: ease;   /* Timing */
+  animation-delay: 0s;               /* Verzögerung */
+  animation-iteration-count: 1;      /* Wie oft: 1, 3, infinite */
+  animation-direction: normal;       /* normal, reverse, alternate */
+  animation-fill-mode: forwards;     /* none, forwards, backwards, both */
+  animation-play-state: running;     /* running, paused */
+
+  /* Kurzform */
+  animation: einblenden 0.5s ease 0s 1 normal forwards;
+  /* animation: name duration timing delay count direction fill-mode */
+}
+
+
+/* =================================================================
+   13. RESPONSIVE DESIGN – MEDIA QUERIES
+================================================================= */
+
+/* Mobile First Ansatz: Zuerst für Handy, dann für größere Geräte */
+
+/* Basis-Styles (Mobile) */
+.responsive-container {
+  width: 100%;
+  padding: 10px;
+}
+
+/* Tablet (ab 768px) */
+@media (min-width: 768px) {
+  .responsive-container {
+    padding: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop (ab 1024px) */
+@media (min-width: 1024px) {
+  .responsive-container {
+    max-width: 1200px;
+    padding: 40px;
+  }
+}
+
+/* Großer Desktop (ab 1400px) */
+@media (min-width: 1400px) {
+  .responsive-container {
+    max-width: 1600px;
+  }
+}
+
+/* Desktop First: Zuerst für PC, dann für kleinere */
+@media (max-width: 768px) {
+  /* Nur für Geräte kleiner als 768px */
+}
+
+/* BREAKPOINT ÜBERSICHT */
+/* xs: < 576px    (kleines Handy) */
+/* sm: >= 576px   (Handy) */
+/* md: >= 768px   (Tablet) */
+/* lg: >= 992px   (Laptop) */
+/* xl: >= 1200px  (Desktop) */
+/* xxl: >= 1400px (Großer Monitor) */
+
+/* Andere Media Query Bedingungen */
+@media (orientation: landscape) { /* Querformat */ }
+@media (orientation: portrait)  { /* Hochformat */ }
+@media print { /* Beim Drucken */ }
+@media (prefers-color-scheme: dark) { /* Dunkelmodus */ }
+@media (hover: none) { /* Touch-Gerät (kein Hover) */ }
+
+
+/* =================================================================
+   14. CSS VARIABLEN (Custom Properties)
+================================================================= */
+
+/* Variablen im :root = Global verfügbar */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --danger-color: #e74c3c;
+  --text-color: #333;
+  --bg-color: #fff;
+  --border-radius: 8px;
+  --shadow: 0 2px 10px rgba(0,0,0,0.1);
+  --font-size-base: 1rem;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+}
+
+.variable-verwendung {
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-md);
+  /* var(--variable, fallback-wert) */
+  color: var(--nicht-existent, red); /* red = Fallback wenn Variable nicht existiert */
+}
+
+
+/* =================================================================
+   15. LISTE & NAVIGATION STYLES
+================================================================= */
+
+ul, ol {
+  list-style: none;    /* Entfernt Punkte/Zahlen (für Navigation) */
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style-type: disc;      /* Runde Punkte (Standard) */
+  list-style-type: circle;    /* Kreise */
+  list-style-type: square;    /* Quadrate */
+  list-style-type: none;      /* Keine */
+  list-style-image: url("bullet.png"); /* Eigenes Bild als Bullet */
+  list-style-position: inside; /* Bullet ist Teil des Textflusses */
+}
+
+ol {
+  list-style-type: decimal;        /* 1, 2, 3 (Standard) */
+  list-style-type: upper-roman;    /* I, II, III */
+  list-style-type: lower-roman;    /* i, ii, iii */
+  list-style-type: upper-alpha;    /* A, B, C */
+  list-style-type: lower-alpha;    /* a, b, c */
+}
+
+
+/* =================================================================
+   16. HÄUFIGE UI-KOMPONENTEN
+================================================================= */
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* KARTE (Card) */
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;  /* Bild ausfüllen ohne verzerren */
+  /* object-fit: cover = ausfüllen (abschneiden)
+     object-fit: contain = ganzes Bild sichtbar
+     object-fit: fill = strecken (verzerrt!)
+     object-fit: none = originale Größe */
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* HERO / BANNER */
+.hero {
+  width: 100%;
+  min-height: 500px;
+  background: url("hero.jpg") center center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+/* Dunkles Overlay über Hintergrundbild */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 60px;
+  background: #2c3e50;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar-links a:hover {
+  color: #3498db;
+}
+
+/* FORMULAR STYLING */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+
+
+/* =================================================================
+   17. NÜTZLICHE HILFKLASSEN (Utility Classes)
+================================================================= */
+
+/* Text-Ausrichtung */
+.text-left   { text-align: left; }
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+
+/* Abstände */
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+.p-1  { padding: 8px; }
+.p-2  { padding: 16px; }
+.p-3  { padding: 24px; }
+
+/* Anzeige */
+.d-none         { display: none; }
+.d-block        { display: block; }
+.d-flex         { display: flex; }
+.d-grid         { display: grid; }
+.d-inline       { display: inline; }
+.d-inline-block { display: inline-block; }
+
+/* Flexbox Utilities */
+.flex-center    { display: flex; justify-content: center; align-items: center; }
+.flex-between   { display: flex; justify-content: space-between; align-items: center; }
+.flex-column    { display: flex; flex-direction: column; }
+.flex-wrap      { flex-wrap: wrap; }
+
+/* Breiten */
+.w-25  { width: 25%; }
+.w-50  { width: 50%; }
+.w-75  { width: 75%; }
+.w-100 { width: 100%; }
+
+/* Volle Höhe */
+.vh-100 { height: 100vh; }
+.h-100  { height: 100%; }
+
+/* Bilder responsive */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Runden */
+.rounded    { border-radius: 4px; }
+.rounded-lg { border-radius: 12px; }
+.circle     { border-radius: 50%; }
+
+/* Schatten */
+.shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.shadow    { box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+.shadow-lg { box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+/* Sichtbarkeit */
+.hidden    { visibility: hidden; }
+.invisible { opacity: 0; }
+.overflow-hidden { overflow: hidden; }

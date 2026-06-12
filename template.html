@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<!-- DOCTYPE: Teilt dem Browser mit, dass es sich um HTML5 handelt. IMMER ganz oben! -->
+
+<html lang="de">
+<!-- <html>: Wurzelelement der gesamten Seite. lang="de" = Sprache Deutsch (gut für SEO & Screenreader) -->
+
+<head>
+  <!-- <head>: Unsichtbarer Bereich – hier kommen Metadaten, Titel, CSS-Links, Fonts -->
+
+  <meta charset="UTF-8">
+  <!-- charset="UTF-8": Zeichensatz – erlaubt Umlaute (ä, ö, ü) und Sonderzeichen -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- viewport: Macht die Seite auf Mobilgeräten richtig skalierbar (Responsive Design) -->
+
+  <meta name="description" content="Beschreibung der Seite für Suchmaschinen">
+  <!-- description: Text der in Google-Suchergebnissen erscheint -->
+
+  <meta name="author" content="Dein Name">
+  <!-- author: Autor der Seite -->
+
+  <title>Seitentitel – erscheint im Browser-Tab</title>
+  <!-- <title>: Pflichtfeld! Erscheint als Tab-Name im Browser -->
+
+  <link rel="stylesheet" href="style.css">
+  <!-- <link>: Verknüpft externe CSS-Datei. rel="stylesheet" = Art der Verknüpfung -->
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- favicon: Kleines Icon das im Browser-Tab erscheint -->
+
+  <!-- Interne CSS (direkt im HTML, besser auslagern in style.css) -->
+  <style>
+    /* Hier kann CSS direkt im HTML-Dokument geschrieben werden */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- <body>: Alles was hier drin ist, wird im Browser angezeigt -->
+
+  <!-- ============================================================ -->
+  <!--            SEMANTISCHE STRUKTUR-ELEMENTE                     -->
+  <!-- ============================================================ -->
+
+  <header>
+    <!-- <header>: Kopfbereich der Seite (oder eines Abschnitts). 
+         Enthält meist Logo, Navigation, Seitentitel -->
+    <h1>Hauptüberschrift der gesamten Seite</h1>
+    <!-- <h1> bis <h6>: Überschriften. h1 = wichtigste, h6 = unwichtigste.
+         Nur EINE h1 pro Seite verwenden! -->
+    <h2>Unterüberschrift</h2>
+    <h3>Unter-Unterüberschrift</h3>
+    <h4>Noch kleiner</h4>
+    <h5>Sehr klein</h5>
+    <h6>Kleinste Überschrift</h6>
+  </header>
+
+  <nav>
+    <!-- <nav>: Navigationsbereich – enthält Menülinks.
+         Wird von Screenreadern als Navigation erkannt -->
+    <ul>
+      <!-- <ul>: Ungeordnete Liste (Punkte/Bullets). 
+           Für Navigation sehr häufig verwendet! -->
+      <li><a href="#section1">Abschnitt 1</a></li>
+      <!-- <li>: Listenelement (muss immer in <ul> oder <ol> sein)
+           <a>: Link (Anker). href="#id" springt zur ID auf der Seite.
+                href="seite.html" öffnet andere Seite.
+                href="https://..." öffnet externe Seite. 
+                target="_blank" öffnet in neuem Tab -->
+      <li><a href="#section2" target="_blank">Externer Link (neuer Tab)</a></li>
+      <li><a href="andere-seite.html">Andere Seite</a></li>
+    </ul>
+
+    <ol>
+      <!-- <ol>: Geordnete Liste (nummeriert 1, 2, 3...) -->
+      <li>Erster Punkt</li>
+      <li>Zweiter Punkt</li>
+      <li>Dritter Punkt</li>
+    </ol>
+  </nav>
+
+  <main>
+    <!-- <main>: Hauptinhalt der Seite. Nur EINMAL pro Seite verwenden! -->
+
+    <!-- ============================================================ -->
+    <!--                    ABSCHNITTE / SECTIONS                     -->
+    <!-- ============================================================ -->
+
+    <section id="section1">
+      <!-- <section>: Thematischer Abschnitt der Seite. 
+           Gut für Gliederung. id="..." = eindeutiger Bezeichner für CSS & Links -->
+
+      <article>
+        <!-- <article>: Eigenständiger Inhalt (z.B. Blogartikel, Newsbeitrag).
+             Macht auch alleinstehend Sinn -->
+        <h2>Artikelüberschrift</h2>
+        <p>Das ist ein Absatz. <strong>Dieser Text ist fett/wichtig.</strong>
+          Und <em>dieser Text ist kursiv/betont.</em></p>
+        <!-- <p>: Absatz (Paragraph) – fügt automatisch Abstand ein -->
+        <!-- <strong>: Fett + semantisch "wichtig" -->
+        <!-- <em>: Kursiv + semantisch "betont" -->
+
+        <p>Hier ist <b>nur fett formatiert</b> ohne semantische Bedeutung.
+          Und <i>nur kursiv</i> ohne Bedeutung.</p>
+        <!-- <b>: Nur fett (ohne Bedeutung) -->
+        <!-- <i>: Nur kursiv (ohne Bedeutung, aber gut für Icons/Logos-Fonts) -->
+
+        <p>Text mit <u>Unterstreichung</u>, <s>durchgestrichen</s>,
+          hoch<sup>gestellt</sup>, tief<sub>gestellt</sub>.</p>
+        <!-- <u>: Unterstrichen -->
+        <!-- <s>: Durchgestrichen (nicht mehr gültig/veraltet) -->
+        <!-- <sup>: Hochgestellt (z.B. m²) -->
+        <!-- <sub>: Tiefgestellt (z.B. H₂O) -->
+
+        <p>Markierter <mark>wichtiger Text</mark> – gelb hinterlegt.</p>
+        <!-- <mark>: Text gelb markieren (wie Textmarker) -->
+
+        <p><small>Kleiner Hinweistext, Copyright, Fußnoten</small></p>
+        <!-- <small>: Kleinerer Text (Copyright, Disclaimer) -->
+
+        <hr>
+        <!-- <hr>: Horizontale Trennlinie (void-Element, kein schließendes Tag nötig) -->
+
+        <p>Zeilenumbruch hier:<br>Neuer Text in nächster Zeile.</p>
+        <!-- <br>: Zeilenumbruch (kein schließendes Tag!) -->
+
+      </article>
+
+    </section>
+
+    <section id="section2">
+      <h2>Bilder & Medien</h2>
+
+      <!-- BILDER -->
+      <img src="bild.jpg" alt="Beschreibung des Bildes" width="400" height="300">
+      <!-- <img>: Bild einbinden (void-Element, kein schließendes Tag!)
+           src="..."  = Pfad zum Bild (relativ oder absolut)
+           alt="..."  = Alternativtext (PFLICHT! Für Barrierefreiheit & SEO)
+           width/height = Größe in Pixel (besser mit CSS festlegen)
+           loading="lazy" = Bild erst laden wenn sichtbar (Performance) -->
+
+      <img src="bild.jpg" alt="Bild" loading="lazy" style="width:100%; max-width:600px;">
+
+      <figure>
+        <!-- <figure>: Container für Bild + Bildunterschrift -->
+        <img src="bild.jpg" alt="Foto Beschreibung">
+        <figcaption>Diese Bildunterschrift erklärt das Bild.</figcaption>
+        <!-- <figcaption>: Bildunterschrift zu <figure> -->
+      </figure>
+
+      <!-- VIDEO -->
+      <video width="640" height="360" controls autoplay muted loop>
+        <!-- controls: Zeigt Steuerungsleiste (Play, Pause, Lautstärke)
+             autoplay: Startet automatisch
+             muted: Stumm (nötig für autoplay in Chrome)
+             loop: Wiederholt das Video
+             poster="bild.jpg": Vorschaubild bevor Video startet -->
+        <source src="video.mp4" type="video/mp4">
+        <!-- <source>: Videoquelle (mehrere für Kompatibilität) -->
+        Dein Browser unterstützt kein Video. <!-- Fallback-Text -->
+      </video>
+
+      <!-- AUDIO -->
+      <audio controls>
+        <source src="audio.mp3" type="audio/mpeg">
+        <source src="audio.ogg" type="audio/ogg">
+        Dein Browser unterstützt kein Audio.
+      </audio>
+
+      <!-- IFRAME (externe Inhalte einbetten) -->
+      <iframe src="https://www.google.com/maps/embed?..." width="600" height="450"
+        style="border:0;" allowfullscreen loading="lazy">
+      </iframe>
+      <!-- <iframe>: Eingebettete externe Webseite (Google Maps, YouTube, etc.)
+           Für YouTube: src="https://www.youtube.com/embed/VIDEO_ID" -->
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!--                    TABELLEN                                   -->
+    <!-- ============================================================ -->
+
+    <section id="tabellen">
+      <h2>Tabellen</h2>
+
+      <table>
+        <!-- <table>: Tabelle erstellen -->
+
+        <caption>Tabellentitel/-beschreibung</caption>
+        <!-- <caption>: Überschrift über der Tabelle -->
+
+        <thead>
+          <!-- <thead>: Tabellenkopf (erster Bereich mit Spaltentiteln) -->
+          <tr>
+            <!-- <tr>: Table Row = Tabellenzeile -->
+            <th scope="col">Spalte 1</th>
+            <!-- <th>: Table Header = Kopfzelle (fett + zentriert)
+                 scope="col" = Diese Kopfzeile gilt für die Spalte (Barrierefreiheit) -->
+            <th scope="col">Spalte 2</th>
+            <th scope="col">Spalte 3</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- <tbody>: Tabellenkörper (die eigentlichen Daten) -->
+          <tr>
+            <td>Zeile 1, Zelle 1</td>
+            <!-- <td>: Table Data = normale Datenzelle -->
+            <td>Zeile 1, Zelle 2</td>
+            <td rowspan="2">Über 2 Zeilen zusammengefügt</td>
+            <!-- rowspan="2": Zelle nimmt 2 Zeilen ein -->
+          </tr>
+          <tr>
+            <td colspan="2">Diese Zelle überspannt 2 Spalten</td>
+            <!-- colspan="2": Zelle nimmt 2 Spalten ein -->
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <!-- <tfoot>: Tabellenfuß (Summen, Gesamt, etc.) -->
+          <tr>
+            <td>Gesamt</td>
+            <td>100€</td>
+            <td>-</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </section>
+
+    <!-- ============================================================ -->
+    <!--                    FORMULARE                                  -->
+    <!-- ============================================================ -->
+
+    <section id="formulare">
+      <h2>Formulare</h2>
+
+      <form action="verarbeitung.php" method="POST">
+        <!-- <form>: Formular-Container
+             action="..." = Wohin werden die Daten gesendet
+             method="POST" = Daten werden unsichtbar gesendet (sicher)
+             method="GET"  = Daten erscheinen in der URL -->
+
+        <fieldset>
+          <!-- <fieldset>: Gruppiert zusammengehörige Formularfelder -->
+          <legend>Persönliche Daten</legend>
+          <!-- <legend>: Titel/Beschriftung des Fieldsets -->
+
+          <!-- TEXT INPUT -->
+          <label for="name">Vollständiger Name:</label>
+          <!-- <label>: Beschriftung für ein Eingabefeld.
+               for="id" muss zur id des Inputs passen! Klick auf Label = Fokus auf Input -->
+          <input type="text" id="name" name="name" placeholder="Max Mustermann"
+            required minlength="2" maxlength="50">
+          <!-- type="text": Einzeiliges Textfeld
+               id="...": Eindeutige ID (verknüpft mit label for="...")
+               name="...": Name der Daten beim Absenden
+               placeholder="...": Grauer Hinweistext
+               required: Pflichtfeld
+               minlength/maxlength: Min/Max Zeichenanzahl -->
+
+          <!-- EMAIL INPUT -->
+          <label for="email">E-Mail:</label>
+          <input type="email" id="email" name="email" placeholder="name@example.com" required>
+          <!-- type="email": Prüft ob @ und Domain vorhanden -->
+
+          <!-- PASSWORD INPUT -->
+          <label for="passwort">Passwort:</label>
+          <input type="password" id="passwort" name="passwort" minlength="8">
+          <!-- type="password": Text wird als *** angezeigt -->
+
+          <!-- NUMBER INPUT -->
+          <label for="alter">Alter:</label>
+          <input type="number" id="alter" name="alter" min="0" max="120" step="1" value="18">
+          <!-- type="number": Nur Zahlen erlaubt
+               min/max: Grenzen
+               step: Schrittgröße
+               value: Standardwert -->
+
+          <!-- RANGE (Schieberegler) -->
+          <label for="lautstaerke">Lautstärke: <span id="ausgabe">50</span></label>
+          <input type="range" id="lautstaerke" name="lautstaerke" min="0" max="100" value="50">
+
+          <!-- DATE INPUT -->
+          <label for="datum">Datum:</label>
+          <input type="date" id="datum" name="datum">
+
+          <!-- TIME INPUT -->
+          <label for="zeit">Uhrzeit:</label>
+          <input type="time" id="zeit" name="zeit">
+
+          <!-- COLOR PICKER -->
+          <label for="farbe">Lieblingsfarbe:</label>
+          <input type="color" id="farbe" name="farbe" value="#ff0000">
+
+          <!-- URL INPUT -->
+          <label for="webseite">Webseite:</label>
+          <input type="url" id="webseite" name="webseite" placeholder="https://...">
+
+          <!-- TEL INPUT -->
+          <label for="telefon">Telefon:</label>
+          <input type="tel" id="telefon" name="telefon" pattern="[0-9]{3,12}">
+
+          <!-- SEARCH INPUT -->
+          <label for="suche">Suchen:</label>
+          <input type="search" id="suche" name="suche" placeholder="Suchbegriff...">
+
+          <!-- FILE UPLOAD -->
+          <label for="datei">Datei hochladen:</label>
+          <input type="file" id="datei" name="datei" accept=".pdf,.jpg,.png" multiple>
+          <!-- accept: Erlaubte Dateitypen
+               multiple: Mehrere Dateien gleichzeitig -->
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Auswahl-Elemente</legend>
+
+          <!-- TEXTAREA (mehrzeiliges Textfeld) -->
+          <label for="nachricht">Nachricht:</label>
+          <textarea id="nachricht" name="nachricht" rows="5" cols="40"
+            placeholder="Deine Nachricht..."></textarea>
+          <!-- <textarea>: Mehrzeiliges Textfeld
+               rows/cols: Anzahl der Zeilen/Spalten
+               resize kann per CSS gesteuert werden -->
+
+          <!-- SELECT (Dropdown) -->
+          <label for="land">Land:</label>
+          <select id="land" name="land">
+            <!-- <select>: Dropdown-Menü -->
+            <option value="">-- Bitte wählen --</option>
+            <!-- <option>: Eine Auswahloption
+                 value="": Leerwert (Pflichtauswahl-Trick) -->
+            <optgroup label="Europa">
+              <!-- <optgroup>: Gruppiert Optionen mit Überschrift -->
+              <option value="at" selected>Österreich</option>
+              <!-- selected: Vorausgewählte Option -->
+              <option value="de">Deutschland</option>
+              <option value="ch">Schweiz</option>
+            </optgroup>
+          </select>
+
+          <!-- CHECKBOX -->
+          <input type="checkbox" id="agb" name="agb" value="ja" required>
+          <label for="agb">Ich akzeptiere die AGB *</label>
+          <!-- type="checkbox": Häkchen-Feld. checked = standardmäßig angehakt -->
+
+          <input type="checkbox" id="newsletter" name="newsletter" value="ja" checked>
+          <label for="newsletter">Newsletter abonnieren</label>
+
+          <!-- RADIO BUTTONS -->
+          <p>Geschlecht:</p>
+          <input type="radio" id="maennlich" name="geschlecht" value="m">
+          <label for="maennlich">Männlich</label>
+          <input type="radio" id="weiblich" name="geschlecht" value="w">
+          <label for="weiblich">Weiblich</label>
+          <input type="radio" id="divers" name="geschlecht" value="d">
+          <label for="divers">Divers</label>
+          <!-- type="radio": Nur EINE Option aus der Gruppe auswählbar
+               Alle radios der gleichen Gruppe brauchen dasselbe name="..." -->
+
+          <!-- DATALIST (Vorschlagsliste für text input) -->
+          <label for="stadt">Stadt:</label>
+          <input type="text" id="stadt" name="stadt" list="staedte">
+          <datalist id="staedte">
+            <!-- <datalist>: Vorschlagsliste (Browser zeigt Autocomplete)
+                 Muss id haben, die mit list="..." vom input übereinstimmt -->
+            <option value="Wien">
+            <option value="Graz">
+            <option value="Linz">
+            <option value="Salzburg">
+            <option value="Berlin">
+          </datalist>
+
+        </fieldset>
+
+        <!-- BUTTONS -->
+        <button type="submit">Formular absenden</button>
+        <!-- type="submit": Sendet das Formular ab -->
+
+        <button type="reset">Zurücksetzen</button>
+        <!-- type="reset": Setzt alle Felder auf Standardwerte zurück -->
+
+        <button type="button" onclick="alert('Hallo!')">Nur ein Klick-Button</button>
+        <!-- type="button": Macht nichts automatisch – nur über JS steuerbar -->
+
+        <!-- Verstecktes Feld (nicht sichtbar, aber wird mit gesendet) -->
+        <input type="hidden" name="formular_id" value="kontaktformular">
+
+      </form>
+    </section>
+
+    <!-- ============================================================ -->
+    <!--               CONTAINER & LAYOUT-ELEMENTE                    -->
+    <!-- ============================================================ -->
+
+    <section id="layout">
+      <h2>Container & Layout</h2>
+
+      <div class="container">
+        <!-- <div>: Block-Container OHNE semantische Bedeutung.
+             Wichtigstes Layout-Element! Nimmt immer volle Breite ein.
+             Wird für Flexbox, Grid, Styling-Blöcke verwendet -->
+
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+
+      </div>
+
+      <p>Text mit einem <span class="rot">roten Inline-Element</span> darin.</p>
+      <!-- <span>: Inline-Container OHNE semantische Bedeutung.
+           Bleibt im Textfluss (nimmt nur so viel Platz wie nötig).
+           Wird für einzelne Wörter/Teile im Text verwendet -->
+
+      <aside>
+        <!-- <aside>: Nebeninhalt (Sidebar, Infoboxen, Werbung).
+             Inhalt ist ergänzend zum Hauptinhalt -->
+        <h3>Sidebar / Infobox</h3>
+        <p>Zusatzinformationen, die nicht zum Hauptinhalt gehören.</p>
+      </aside>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!--               ZITATE & CODE                                   -->
+    <!-- ============================================================ -->
+
+    <section id="zitate">
+      <h2>Zitate & Code</h2>
+
+      <blockquote cite="https://quelle.at">
+        <!-- <blockquote>: Längeres Blockzitat (eingerückt dargestellt)
+             cite="...": Quelle des Zitats (URL) -->
+        <p>"Das ist ein langes Zitat von jemandem Wichtigem."</p>
+      </blockquote>
+
+      <p>Wie Einstein sagte: <q>Phantasie ist wichtiger als Wissen.</q></p>
+      <!-- <q>: Kurzes Inline-Zitat (setzt automatisch Anführungszeichen) -->
+
+      <p>Die Abkürzung <abbr title="Hypertext Markup Language">HTML</abbr> steht für...</p>
+      <!-- <abbr>: Abkürzung. title="..." zeigt den vollen Begriff beim Hover -->
+
+      <address>
+        <!-- <address>: Kontaktinformationen (Name, Adresse, E-Mail, Tel) -->
+        Max Mustermann<br>
+        Musterstraße 1<br>
+        1010 Wien<br>
+        <a href="mailto:max@example.com">max@example.com</a>
+        <!-- href="mailto:..." öffnet E-Mail-Programm -->
+        <a href="tel:+431234567">+43 1 234 567</a>
+        <!-- href="tel:..." öffnet Telefon-App auf Mobilgeräten -->
+      </address>
+
+      <pre>
+        <!-- <pre>: Vorformatierter Text (behält Leerzeichen und Zeilenumbrüche) -->
+        Dieser  Text
+           behält   seine
+              Formatierung
+      </pre>
+
+      <p>Inline-Code: <code>console.log("Hallo")</code></p>
+      <!-- <code>: Inline-Codedarstellung (Monospace-Schrift) -->
+
+      <kbd>Strg + C</kbd>
+      <!-- <kbd>: Tastatureingabe darstellen -->
+
+      <samp>Fehler: Datei nicht gefunden</samp>
+      <!-- <samp>: Computerausgabe/Sample-Output -->
+
+      <var>x</var> = <var>y</var> + 2
+      <!-- <var>: Variable in Mathematik/Code -->
+
+      <details>
+        <!-- <details>: Ausklappbarer Bereich (kein JS nötig!) -->
+        <summary>Klick zum Ausklappen</summary>
+        <!-- <summary>: Der sichtbare Titel des Details-Blocks -->
+        <p>Dieser Text ist versteckt bis man klickt.</p>
+      </details>
+
+      <dialog id="meinDialog">
+        <!-- <dialog>: Modales Dialogfenster/Popup (per JS mit .showModal() öffnen) -->
+        <p>Das ist ein Dialog-Popup!</p>
+        <button onclick="document.getElementById('meinDialog').close()">Schließen</button>
+      </dialog>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!--               SEMANTISCHE ZEITANGABEN                        -->
+    <!-- ============================================================ -->
+
+    <section>
+      <h2>Zeit & Datum</h2>
+      <p>Veröffentlicht am <time datetime="2024-06-12">12. Juni 2024</time></p>
+      <!-- <time>: Maschinenlesbares Datum/Uhrzeit
+           datetime="YYYY-MM-DD": ISO-Format für Maschinen -->
+
+      <p>Die Veranstaltung dauert <time datetime="PT2H30M">2 Stunden und 30 Minuten</time>.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!--              FORTSCHRITT & MESSUNG                           -->
+    <!-- ============================================================ -->
+
+    <section>
+      <h2>Fortschritt & Werte</h2>
+
+      <label for="fortschritt">Fortschritt:</label>
+      <progress id="fortschritt" value="70" max="100">70%</progress>
+      <!-- <progress>: Fortschrittsbalken (z.B. Ladevorgang)
+           value: Aktueller Wert
+           max: Maximalwert -->
+
+      <label for="speicher">Speicher:</label>
+      <meter id="speicher" value="6" min="0" max="10" low="2" high="8" optimum="5">6 GB</meter>
+      <!-- <meter>: Messung innerhalb eines bekannten Bereichs
+           low: Unterhalb diesem Wert = "schlecht" (rot/gelb)
+           high: Oberhalb diesem Wert = "kritisch"
+           optimum: Optimaler Wert -->
+
+    </section>
+
+  </main>
+
+  <!-- ============================================================ -->
+  <!--                    FOOTER                                     -->
+  <!-- ============================================================ -->
+
+  <footer>
+    <!-- <footer>: Fußbereich der Seite (Copyright, Links, Kontakt)
+         Kann auch in <article> oder <section> verwendet werden -->
+
+    <p>&copy; 2024 Mein Name. Alle Rechte vorbehalten.</p>
+    <!-- &copy; = Copyright-Symbol ©
+         Weitere HTML-Entities:
+         &amp;  = &
+         &lt;   = <
+         &gt;   = >
+         &nbsp; = geschütztes Leerzeichen (kein Zeilenumbruch)
+         &euro; = €
+         &auml; = ä   &ouml; = ö   &uuml; = ü   &szlig; = ß -->
+
+    <nav>
+      <a href="#top">Zurück nach oben</a> |
+      <a href="impressum.html">Impressum</a> |
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!--                    SKRIPTE                                    -->
+  <!-- ============================================================ -->
+
+  <script src="script.js"></script>
+  <!-- <script>: JavaScript einbinden. Am Ende des Body = Seite lädt schneller
+       src="...": Externe JS-Datei
+       defer: Skript wird nach dem HTML geladen
+       async: Skript wird parallel geladen (Reihenfolge egal) -->
+
+  <script>
+    // Inline-JavaScript (besser in externe .js Datei auslagern)
+    console.log("Seite geladen!");
+  </script>
+
+</body>
+</html>
